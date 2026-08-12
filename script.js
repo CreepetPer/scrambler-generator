@@ -8,14 +8,11 @@ function generateScramble() {
     scramble = '';
     let currentFace = '';
     let currentFaceFiltered = '';
-    let scrambleFiltered = '';
     let lastFace = '';
 
     for (let i = 0; i < 20; i++) {
         currentFace = faces[Math.floor(Math.random() * faces.length)];
         currentFaceFiltered = currentFace.replace(/[2']/g, "");
-        scrambleFiltered = scramble.replace(/[2'\s]/g, "");
-        lastFace = scrambleFiltered.slice(-1);
 
         while (currentFaceFiltered === lastFace && lastFace != '') {
             currentFace = faces[Math.floor(Math.random() * faces.length)];
@@ -27,6 +24,8 @@ function generateScramble() {
         } else {
             scramble += ` ${currentFace}`;
         }
+
+        lastFace = currentFaceFiltered;
     }
 
     scrambleDisplay.textContent = scramble;
